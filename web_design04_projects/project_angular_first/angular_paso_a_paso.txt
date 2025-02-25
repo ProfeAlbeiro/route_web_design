@@ -1281,43 +1281,24 @@
 |-- Recomendaciones para poner en marcha el proyecto ----------------------------------------------------------------------------------------------------|
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 
---- 01. Tomar en cuenta que el proyecto funciona a través de dependencias y están alojadas en 'app01/package.json'
-        (Por ejemplo, '20.  "@angular/router": "^19.1.0",')
+--- 01. Clonar el proyecto desde github en cualquier parte del computador (Ejp, Escritorio)
 
---- 02. Clonar el proyecto desde github en cualquier parte del computador (Ejp, Escritorio)
+--- 02. Abrir el proyecto en Visual Studion Code
 
---- 03. Abrir en Visual Studion Code
-
---- 04. Abrir una terminal
-
---- 05. Ingresar a la carpeta del proyecto:
-
+--- 03. Abrir una terminal y ubicarse en el proyecto:
+      
            PS C:\Users\ADMIN\Desktop\angular> cd app01
 
---- 06. Instalar dependencias de angular desde la terminal: 
+--- 04. Instalar dependencias de Angular desde la terminal: 
 
            PS C:\Users\Instructor\Desktop\angular\app01> npm install
         
         NOTA: Si no está instalado Angular en el computador, seguir el apartado '01. Presentación y creación del proyecto'
 
---- 07. Ejecutar el Servidor desde la terminal:
+--- 07. Abrir otra terminal y ejecutar el servidor de 'angular':
 
              PS C:\Users\ADMIN\Desktop\angular\app01> ng serve -o
 
---- 08. Inicializar un proyecto de node.js desde la terminal:
-
-             PS C:\Users\ADMIN\Desktop\angular\sources\jsonserver> npm init -y
-
---- 09. Crear dentro de la carpeta 'angular/jsonserver' el archivo de la base de datos denominado 'db.json'
-
---- 10. Agregar la base de datos al archivo 'db.json' desde el siguiente enlace:
-
-             https://github.com/ProfeAlbeiro/angular/blob/main/sources/db/db.json
-
---- 11. Instalar 'jsonserver' desde la terminal:
-
-             PS C:\Users\ADMIN\Desktop\angular\sources\jsonserver> npm install json-server
-
---- 12. Ejecutar el servidor 'jsonserver' desde la terminal para tener 'api fake' lista para trabajar:
+--- 08. Abrir otra terminal y ejecutar el servidor 'jsonserver':
 
              PS C:\Users\ADMIN\Desktop\angular\sources\jsonserver> npx json-server db.json

@@ -1283,22 +1283,26 @@
 
 --- 01. Clonar el proyecto desde github en cualquier parte del computador (Ejp, Escritorio)
 
---- 02. Abrir el proyecto en Visual Studion Code
+--- 02. Abrir el proyecto en Visual Studio Code
 
 --- 03. Abrir una terminal y ubicarse en el proyecto:
       
-           PS C:\Users\ADMIN\Desktop\angular> cd app01
+          PS ..\..> cd app01
 
 --- 04. Instalar dependencias de Angular desde la terminal: 
 
-           PS C:\Users\Instructor\Desktop\angular\app01> npm install
+          PS ..\app01> npm install
         
         NOTA: Si no está instalado Angular en el computador, seguir el apartado '01. Presentación y creación del proyecto'
 
---- 07. Abrir otra terminal y ejecutar el servidor de 'angular':
+--- 05. Abrir otra terminal y ejecutar el servidor de 'angular':
 
-             PS C:\Users\ADMIN\Desktop\angular\app01> ng serve -o
+          PS ..\app01> ng serve -o
 
---- 08. Abrir otra terminal y ejecutar el servidor 'jsonserver':
+--- 06. Abrir una terminal y ubicarse en el servidor json:
 
-             PS C:\Users\ADMIN\Desktop\angular\sources\jsonserver> npx json-server db.json
+          PS ..\..> cd jsonserver
+
+--- 07. Abrir otra terminal y ejecutar el servidor 'jsonserver':
+
+          PS ..\jsonserver> npx json-server db.json

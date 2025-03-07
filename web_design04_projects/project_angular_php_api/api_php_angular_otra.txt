@@ -1,0 +1,93 @@
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-- 02.10. Servicio: frontend/src/app/services/housing-location.service.ts ------------------------------------------------------------------------------|
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+              01      import { Injectable } from '@angular/core';
+              02      import { HttpClient, HttpHeaders } from '@angular/common/http';
+              03      import { Observable } from 'rxjs';
+              04      import { HousingLocation } from '../interfaces/housing-location';
+              05
+              06      @Injectable({
+              07        providedIn: 'root'
+              08      })
+              09      export class HousingLocationService {
+              10        private url = 'http://localhost/api_php_angular/backend/controllers/Locations.php';
+              11
+              12        constructor(private http: HttpClient) { }
+              13
+              14        getAllLocations(): Observable<any> {
+              15          return this.http.get<any>(this.url);
+              16        }
+              17
+              18        createLocation(location: HousingLocation): Observable<any> {
+              19          const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+              20          return this.http.post<any>(this.url, location, { headers });
+              21        }
+              22
+              23        updateLocation(location: HousingLocation): Observable<any> {
+              24          const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+              25          return this.http.put<any>(this.url, location, { headers });
+              26        }
+              27
+              28        deleteLocation(id: number): Observable<any> {
+              29          const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+              30          return this.http.request<any>('DELETE', this.url, { body: { id }, headers });
+              31        }
+              32      }
+
+import { Component, OnInit } from '@angular/core';
+import { HousingLocationService, HousingLocation } from '../../services/housing-location-service';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-housing-location',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './housing-location.component.html',
+  styleUrls: ['./housing-location.component.css']
+})
+export class HousingLocationComponent implements OnInit {
+  locations: HousingLocation[] = [];
+
+  constructor(private housingLocationService: HousingLocationService) {}
+
+  ngOnInit(): void {
+    this.getLocations();
+  }
+
+  getLocations(): void {
+    this.housingLocationService.getAllLocations().subscribe(
+      response => {
+        console.log('Respuesta de la API:', response); // <-- Aquí agregamos el console.log
+        this.locations = response.datos;
+      },
+      error => console.error('Error al obtener las ubicaciones:', error)
+    );
+  }
+
+  deleteLocation(id: number): void {
+    this.housingLocationService.deleteLocation(id).subscribe(
+      () => this.getLocations(),
+      error => console.error('Error al eliminar la vivienda:', error)
+    );
+  }
+}
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+/* Plantilla HTML: housing-location.component.html */
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+<nav>
+  <a routerLink="/locations">Ver Ubicaciones</a>
+</nav>
+
+<div>
+  <h2>Ubicaciones de Viviendas</h2>
+  <ul>
+    <li *ngFor="let location of locations">
+      <h3>{{ location.name }} - {{ location.city }}, {{ location.state }}</h3>
+      <p>Unidades disponibles: {{ location.availableUnits }}</p>
+      <!-- <button (click)="deleteLocation(location.id!)">Eliminar</button> -->
+    </li>
+  </ul>
+</div>
